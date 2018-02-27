@@ -14,6 +14,24 @@ public class orders {
 	private double employeeHourlyRate;
 	private int clientId;
 	
+	public orders(String id, String orderDate, String startDate, int employeeId, String problemDesc, String repairDesc,
+			String vehicleId, double generalCost, double partsCost, double employeeHours, double employeeHourlyRate,
+			int clientId) {
+		super();
+		this.id = id;
+		this.orderDate = orderDate;
+		this.startDate = startDate;
+		this.employeeId = employeeId;
+		this.problemDesc = problemDesc;
+		this.repairDesc = repairDesc;
+		this.vehicleId = vehicleId;
+		this.generalCost = generalCost;
+		this.partsCost = partsCost;
+		this.employeeHours = employeeHours;
+		this.employeeHourlyRate = employeeHourlyRate;
+		this.clientId = clientId;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -62,10 +80,6 @@ public class orders {
 		return clientId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
@@ -106,21 +120,7 @@ public class orders {
 		this.employeeHourlyRate = employeeHourlyRate;
 	}
 
-	public orders(String id, String orderDate, String startDate, int employeeId, String problemDesc, String repairDesc,
-			String vehicleId, double generalCost, double partsCost, double employeeHours, double employeeHourlyRate,
-			int clientId) {
-		super();
-		this.id = id;
-		this.orderDate = orderDate;
-		this.startDate = startDate;
-		this.employeeId = employeeId;
-		this.problemDesc = problemDesc;
-		this.repairDesc = repairDesc;
-		this.vehicleId = vehicleId;
-		this.generalCost = generalCost;
-		this.partsCost = partsCost;
-		this.employeeHours = employeeHours;
-		this.employeeHourlyRate = employeeHourlyRate;
+	public void setClientId(int clientId) {
 		this.clientId = clientId;
 	}
 
