@@ -1,4 +1,4 @@
-package pl.coderslab.controller;
+package pl.coderslab.entity;
 
 public class employees {
 	private int id;
