@@ -1,11 +1,16 @@
 package pl.coderslab.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import pl.coderslab.dao.clientsDao;
+import pl.coderslab.entity.clients;
 
 /**
  * Servlet implementation class editClient
@@ -26,16 +31,33 @@ public class editClient extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		List<clients> clients= clientsDao.listClients();
+		request.setAttribute("clients", clients);
+		getServletContext()
+			.getRequestDispatcher("/WEB-INF/views/editClient.jsp")
+			.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		
+		String name = request.getParameter("name");
+		String surname = request.getParameter("surname");
+		String mail = request.getParameter("mail");
+		int phone = Integer.parseInt(request.getParameter("phone"));
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		
+		clients editClient = new clients(id, name, surname, mail, phone);
+		clientsDao.clientsEdit(editClient);
+		
+		
+		
+doGet(request, response);
 	}
 
 }

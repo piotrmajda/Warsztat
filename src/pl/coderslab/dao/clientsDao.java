@@ -74,6 +74,25 @@ public class clientsDao {
 
 	}
 	
+	static public clients clientsEdit(clients editClient) {
+		try {
+			Connection c = DbUtil.getConn();
+			PreparedStatement query = c.prepareStatement("UPDATE clients SET name = ?, surname = ?, mail = ?, phone= ? WHERE id = ?");
+			query.setString(1, editClient.getName());
+			query.setString(2, editClient.getSurname());
+			query.setString(3, editClient.getMail());
+			query.setInt(4, editClient.getPhone());
+			query.setInt(5, editClient.getId());
+			
+			query.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println(editClient.getId());
+		return editClient;
+	}
+	
 
 }
 
