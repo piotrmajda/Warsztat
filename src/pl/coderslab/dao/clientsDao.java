@@ -60,7 +60,7 @@ public class clientsDao {
 		try {
 			Connection c = DbUtil.getConn();
 
-			PreparedStatement query = c.prepareStatement("DELETE clients WHERE ID=?");
+			PreparedStatement query = c.prepareStatement("DELETE FROM clients WHERE ID=?");
 			query.setInt(1, id);
 
 			query.executeUpdate();
