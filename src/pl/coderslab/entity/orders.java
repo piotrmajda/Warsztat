@@ -1,7 +1,7 @@
 package pl.coderslab.entity;
 
 public class orders {
-	private String id;
+	private int id;
 	private String orderDate;
 	private String startDate;
 	private int employeeId;

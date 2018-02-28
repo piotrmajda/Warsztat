@@ -5,7 +5,8 @@ public class clients {
 	private String name;
 	private String surname;
 	private String mail;
-	private int phone;
+	private int phone;	
+	
 	public int getId() {
 		return id;
 	}
@@ -20,6 +21,9 @@ public class clients {
 	}
 	public int getPhone() {
 		return phone;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public void setName(String name) {
 		this.name = name;
@@ -36,6 +40,13 @@ public class clients {
 	public clients(int id, String name, String surname, String mail, int phone) {
 		super();
 		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.mail = mail;
+		this.phone = phone;
+	}
+	public clients(String name, String surname, String mail, int phone) {
+		super();
 		this.name = name;
 		this.surname = surname;
 		this.mail = mail;
