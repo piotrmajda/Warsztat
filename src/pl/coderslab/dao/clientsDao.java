@@ -20,7 +20,7 @@ public class clientsDao {
 			query.setString(1, newClient.getName());
 			query.setString(2, newClient.getSurname());
 			query.setString(3, newClient.getMail());
-			query.setInt(4, newClient.getPhone());
+			query.setString(4, newClient.getPhone());
 
 			query.executeUpdate();
 			ResultSet rs = query.getGeneratedKeys();
@@ -44,7 +44,7 @@ public class clientsDao {
 			ResultSet rs = query.executeQuery();
 
 			while (rs.next()) {
-				clients client1 = new clients( rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+				clients client1 = new clients( rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
 				client1.setId(rs.getInt(1));
 				client.add(client1);
 			}
