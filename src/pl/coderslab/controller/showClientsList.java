@@ -1,11 +1,16 @@
 package pl.coderslab.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import pl.coderslab.dao.clientsDao;
+import pl.coderslab.entity.clients;
 
 /**
  * Servlet implementation class showClientsList
@@ -26,8 +31,12 @@ public class showClientsList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		List<clients> clients= clientsDao.listClients();
+		request.setAttribute("clients", clients);
+		getServletContext()
+			.getRequestDispatcher("/WEB-INF/views/showClientsList.jsp")
+			.forward(request, response);
 	}
 
 	/**

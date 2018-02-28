@@ -1,7 +1,6 @@
 package pl.coderslab.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,7 +48,7 @@ public class addClient extends HttpServlet {
 		String name = request.getParameter("name");
 		String surname = request.getParameter("surname");
 		String mail = request.getParameter("mail");
-		String phone = request.getParameter("phone");
+		int phone = Integer.parseInt(request.getParameter("phone"));
 		
 		clients newClient = new clients(name, surname, mail, phone);
 		clientsDao.clientsAdd(newClient);

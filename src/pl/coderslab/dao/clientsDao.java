@@ -15,12 +15,12 @@ public class clientsDao {
 	static public clients clientsAdd(clients newClient) {
 		try {
 			Connection c = DbUtil.getConn();
-			PreparedStatement query = c.prepareStatement("INSERT NEW clients VALUES(default, ?, ?, ?, ?)",
+			PreparedStatement query = c.prepareStatement("INSERT INTO clients VALUES(default, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			query.setString(1, newClient.getName());
 			query.setString(2, newClient.getSurname());
 			query.setString(3, newClient.getMail());
-			query.setString(4, newClient.getPhone());
+			query.setInt(4, newClient.getPhone());
 
 			query.executeUpdate();
 			ResultSet rs = query.getGeneratedKeys();
@@ -35,8 +35,8 @@ public class clientsDao {
 		return newClient;
 	}
 
-	static public List<clients> listOfClients() {
-		List<clients> client = new ArrayList<>();
+	static public List<clients> listClients() {
+		List<clients> clients = new ArrayList<>();
 		try {
 			Connection c = DbUtil.getConn();
 
@@ -44,15 +44,15 @@ public class clientsDao {
 			ResultSet rs = query.executeQuery();
 
 			while (rs.next()) {
-				clients client1 = new clients( rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
-				client1.setId(rs.getInt(1));
-				client.add(client1);
+				clients client = new clients( rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+				client.setId(rs.getInt(1));
+				clients.add(client);
 			}
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return client;
+		return clients;
 
 	}
 	
