@@ -6,6 +6,8 @@ public class employees {
 	private String surname;
 	private String address;
 	private int phone;
+	private String note;
+	private double employee_hours;
 	public int getId() {
 		return id;
 	}
@@ -62,8 +64,6 @@ public class employees {
 		this.employee_hours = employee_hours;
 	}
 
-	private String note;
-	private double employee_hours;
 	
 	public employees(int id, String name, String surname, String address, int phone, String note,
 			double employee_hours) {

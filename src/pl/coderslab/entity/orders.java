@@ -7,15 +7,15 @@ public class orders {
 	private int employeeId;
 	private String problemDesc;
 	private String repairDesc;
-	private String vehicleId;
+	private int vehicleId;
 	private double generalCost;
 	private double partsCost;
 	private double employeeHours;
 	private double employeeHourlyRate;
 	private int clientId;
 	
-	public orders(String id, String orderDate, String startDate, int employeeId, String problemDesc, String repairDesc,
-			String vehicleId, double generalCost, double partsCost, double employeeHours, double employeeHourlyRate,
+	public orders(int id, String orderDate, String startDate, int employeeId, String problemDesc, String repairDesc,
+			int vehicleId, double generalCost, double partsCost, double employeeHours, double employeeHourlyRate,
 			int clientId) {
 		super();
 		this.id = id;
@@ -32,7 +32,7 @@ public class orders {
 		this.clientId = clientId;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -56,7 +56,7 @@ public class orders {
 		return repairDesc;
 	}
 
-	public String getVehicleId() {
+	public int getVehicleId() {
 		return vehicleId;
 	}
 
@@ -100,7 +100,7 @@ public class orders {
 		this.repairDesc = repairDesc;
 	}
 
-	public void setVehicleId(String vehicleId) {
+	public void setVehicleId(int vehicleId) {
 		this.vehicleId = vehicleId;
 	}
 
