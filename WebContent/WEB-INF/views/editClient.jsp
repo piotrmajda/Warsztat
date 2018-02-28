@@ -7,9 +7,7 @@
 
 <c:forEach items="${ clients }" var="client">
 <button type="button" class="btn btn-secondary" style="cursor:pointer;" data-toggle="modal" data-target="#${client.id}">${client.surname}, ${client.name}</button>
-</c:forEach>
 
-<c:forEach items="${ clients }" var="client">
 <div class="modal fade" id="${client.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
