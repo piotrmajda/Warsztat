@@ -61,23 +61,23 @@ public class ordersDao {
 
 	}
 	
-//	static public boolean clientsDel(int id) throws Exception {
-//		try {
-//			Connection c = DbUtil.getConn();
-//
-//			PreparedStatement query = c.prepareStatement("DELETE FROM clients WHERE ID=?");
-//			query.setInt(1, id);
-//
-//			query.executeUpdate();
-//			
-//
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//		
-//		return true;
-//
-//	}
+	static public boolean ordersDel(int id) throws Exception {
+		try {
+			Connection c = DbUtil.getConn();
+
+			PreparedStatement query = c.prepareStatement("DELETE FROM orders WHERE ID=?");
+			query.setInt(1, id);
+
+			query.executeUpdate();
+			
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return true;
+
+	}
 //	
 //	static public clients clientsEdit(clients editClient) {
 //		try {

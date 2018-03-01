@@ -23,6 +23,8 @@
 	      			<th scope="col">Koszt części</th>
 	      			<th scope="col">Ilość roboczogodzin</th>
 	      			<th scope="col">Stawka za godzinę</th>
+	      			<th scope="col"></th>	      			
+	      			<th scope="col"></th>
 				</tr>
 	  		</thead>
 	  		<tbody>
@@ -51,7 +53,18 @@
 	      				<td>${order.generalCost}</td>
 	      				<td>${order.partsCost}</td>
 	      				<td>${order.employeeHours}</td>
-	      				<td>${order.employeeHourlyRate}</td>
+	      				<td>${order.employeeHourlyRate}</td>	      				
+	      				<td>
+	      					<form action="editOrder" method="post">
+								<button type="submit" name="editId" value="${order.id}" class="btn btn-warning">Edytuj</button>
+							</form>
+						</td>	      				
+	      				<td>
+	      					<form action="deleteOrder" method="post">
+								<button type="submit" name="delId" value="${order.id}" class="btn btn-danger">Usuń</button>
+							</form>
+						</td>
+
 				    </tr>
 				</c:forEach>			    
 			</tbody>
