@@ -48,16 +48,30 @@ public class editClient extends HttpServlet {
 		String name = request.getParameter("name");
 		String surname = request.getParameter("surname");
 		String mail = request.getParameter("mail");
-		int phone = Integer.parseInt(request.getParameter("phone"));
+		String phoneWork = request.getParameter("phone");
+		int phone;
+		try
+		{
+			if(phoneWork != null){
+			      phone = Integer.parseInt(phoneWork);
+			}else {
+				phone = 0;
+			}
+		}catch (NumberFormatException e)
+		{
+		    phone = 0;
+		
+			
+		
+		}
+
 		int id = Integer.parseInt(request.getParameter("id"));
 		
 		
 		clients editClient = new clients(id, name, surname, mail, phone);
 		clientsDao.clientsEdit(editClient);
 		
-		
-		
 doGet(request, response);
 	}
-
+	
 }

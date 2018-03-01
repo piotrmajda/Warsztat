@@ -38,7 +38,7 @@ public class addClient extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		
 		
@@ -48,12 +48,24 @@ public class addClient extends HttpServlet {
 		String name = request.getParameter("name");
 		String surname = request.getParameter("surname");
 		String mail = request.getParameter("mail");
-		int phone = Integer.parseInt(request.getParameter("phone"));
+		String phoneWork = request.getParameter("phone");
+		int phone;
+		try
+		{
+			if(phoneWork != null){
+			      phone = Integer.parseInt(phoneWork);
+			}else {
+				phone = 0;
+			}
+		}catch (NumberFormatException e)
+		{
+		    phone = 0;
 		
+		
+		}
+
 		clients newClient = new clients(name, surname, mail, phone);
 		clientsDao.clientsAdd(newClient);
-		
-		
 		
 doGet(request, response);
 	}

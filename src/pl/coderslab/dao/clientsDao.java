@@ -15,12 +15,24 @@ public class clientsDao {
 	static public clients clientsAdd(clients newClient) {
 		try {
 			Connection c = DbUtil.getConn();
-			PreparedStatement query = c.prepareStatement("INSERT INTO clients VALUES(default, ?, ?, ?, ?)",
+			PreparedStatement query;
+			if(newClient.getPhone() >0){
+				query = c.prepareStatement("INSERT INTO clients VALUES(default, ?, ?, ?, ?)",
+						Statement.RETURN_GENERATED_KEYS);
+				query.setString(1, newClient.getName());
+				query.setString(2, newClient.getSurname());
+				query.setString(3, newClient.getMail());
+				query.setInt(4, newClient.getPhone());
+			}
+			else{query = c.prepareStatement("INSERT INTO clients(id, name, surname, mail) VALUES(default, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			query.setString(1, newClient.getName());
 			query.setString(2, newClient.getSurname());
 			query.setString(3, newClient.getMail());
-			query.setInt(4, newClient.getPhone());
+				
+			}
+
+			
 
 			query.executeUpdate();
 			ResultSet rs = query.getGeneratedKeys();
@@ -78,12 +90,12 @@ public class clientsDao {
 		try {
 			Connection c = DbUtil.getConn();
 			PreparedStatement query = c.prepareStatement("UPDATE clients SET name = ?, surname = ?, mail = ?, phone= ? WHERE id = ?");
-			query.setString(1, editClient.getName());
-			query.setString(2, editClient.getSurname());
-			query.setString(3, editClient.getMail());
-			query.setInt(4, editClient.getPhone());
-			query.setInt(5, editClient.getId());
-			
+				query.setString(1, editClient.getName());
+				query.setString(2, editClient.getSurname());
+				query.setString(3, editClient.getMail());
+				query.setInt(4, editClient.getPhone());
+				query.setInt(5, editClient.getId());
+
 			query.executeUpdate();
 
 		} catch (Exception e) {
