@@ -14,6 +14,7 @@ public class orders {
 	private double employeeHourlyRate;
 	private int clientId;
 	private String plannedStartDate;
+	private String status;
 	
 	
 	public orders(int id, String orderDate, String startDate, int employeeId, String problemDesc, String repairDesc,
@@ -21,6 +22,24 @@ public class orders {
 			int clientId, String plannedStartDate, String status) {
 		super();
 		this.id = id;
+		this.orderDate = orderDate;
+		this.startDate = startDate;
+		this.employeeId = employeeId;
+		this.problemDesc = problemDesc;
+		this.repairDesc = repairDesc;
+		this.vehicleId = vehicleId;
+		this.generalCost = generalCost;
+		this.partsCost = partsCost;
+		this.employeeHours = employeeHours;
+		this.employeeHourlyRate = employeeHourlyRate;
+		this.clientId = clientId;
+		this.plannedStartDate = plannedStartDate;
+		this.status = status;
+	}
+	public orders(String orderDate, String startDate, int employeeId, String problemDesc, String repairDesc,
+			int vehicleId, double generalCost, double partsCost, double employeeHours, double employeeHourlyRate,
+			int clientId, String plannedStartDate, String status) {
+		super();
 		this.orderDate = orderDate;
 		this.startDate = startDate;
 		this.employeeId = employeeId;
@@ -58,8 +77,7 @@ public class orders {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	private String status;
+	
 
 	public void setId(int id) {
 		this.id = id;

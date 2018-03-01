@@ -40,27 +40,27 @@ public class ordersDao {
 		return newOrder;
 	}
 
-//	static public List<orders> listOrders() {
-//		List<orders> orders = new ArrayList<>();
-//		try {
-//			Connection c = DbUtil.getConn();
-//
-//			PreparedStatement query = c.prepareStatement("SELECT * FROM clients");
-//			ResultSet rs = query.executeQuery();
-//
-//			while (rs.next()) {
-//				clients client = new clients( rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5));
-//				client.setId(rs.getInt(1));
-//				clients.add(client);
-//			}
-//
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//		return clients;
-//
-//	}
-//	
+	static public List<orders> listOrders() {
+		List<orders> orders = new ArrayList<>();
+		try {
+			Connection c = DbUtil.getConn();
+
+			PreparedStatement query = c.prepareStatement("SELECT * FROM orders");
+			ResultSet rs = query.executeQuery();
+
+			while (rs.next()) {
+				orders order = new orders( rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDouble(8), rs.getDouble(9), rs.getDouble(10), rs.getDouble(11), rs.getInt(12), rs.getString(13), rs.getString(14));
+				order.setId(rs.getInt(1));
+				orders.add(order);
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return orders;
+
+	}
+	
 //	static public boolean clientsDel(int id) throws Exception {
 //		try {
 //			Connection c = DbUtil.getConn();
