@@ -21,7 +21,7 @@
       
       	
 
-				<form action="" method="post">
+				<form action="editClient" method="post">
 				<div style="display:none;" class="form-group row">
 				    <label for="inputId" class="col-sm-2 col-form-label">Id</label>
 				    <div class="col-sm-10">

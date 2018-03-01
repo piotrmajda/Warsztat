@@ -13,10 +13,12 @@ public class orders {
 	private double employeeHours;
 	private double employeeHourlyRate;
 	private int clientId;
+	private String plannedStartDate;
+	
 	
 	public orders(int id, String orderDate, String startDate, int employeeId, String problemDesc, String repairDesc,
 			int vehicleId, double generalCost, double partsCost, double employeeHours, double employeeHourlyRate,
-			int clientId) {
+			int clientId, String plannedStartDate, String status) {
 		super();
 		this.id = id;
 		this.orderDate = orderDate;
@@ -30,6 +32,30 @@ public class orders {
 		this.employeeHours = employeeHours;
 		this.employeeHourlyRate = employeeHourlyRate;
 		this.clientId = clientId;
+		this.plannedStartDate = plannedStartDate;
+		this.status = status;
+	}
+
+	public String getPlannedStartDate() {
+		return plannedStartDate;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setPlannedStartDate(String plannedStartDate) {
+		this.plannedStartDate = plannedStartDate;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	private String status;
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getId() {
@@ -123,5 +149,6 @@ public class orders {
 	public void setClientId(int clientId) {
 		this.clientId = clientId;
 	}
+
 
 }
