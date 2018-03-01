@@ -15,26 +15,20 @@ public class ordersDao {
 	static public orders ordersAdd(orders newOrder) {
 		try {
 			Connection c = DbUtil.getConn();
-			PreparedStatement query = c.prepareStatement("INSERT INTO orders VALUES(default, NOW(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+			PreparedStatement query = c.prepareStatement("INSERT INTO orders(id, orderDate, plannedStartDate, problemDesc, clientId, status) VALUES(default, NOW(), ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
-			query.setString(1, newOrder.getStartDate());
-			query.setInt(2, newOrder.getEmployeeId());
-			query.setString(3, newOrder.getProblemDesc());
-			query.setString(4, newOrder.getRepairDesc());
-			query.setInt(5, newOrder.getVehicleId());
-			query.setDouble(6, newOrder.getGeneralCost());
-			query.setDouble(7, newOrder.getPartsCost());
-			query.setDouble(8, newOrder.getPartsCost());
-			query.setDouble(9, newOrder.getEmployeeHourlyRate());
-			query.setInt(10, newOrder.getClientId());
-			query.setString(11, newOrder.getPlannedStartDate());
-			query.setString(12, newOrder.getStatus());
-			
+			query.setString(1, newOrder.getPlannedStartDate());
+			query.setString(2, newOrder.getProblemDesc());
+			query.setInt(3, newOrder.getClientId());
+			query.setString(4, newOrder.getStatus());
+//			query.setInt(5, newOrder.getVehicleId());
+//			query.setInt(6, newOrder.getEmployeeId());
 			
 			
 
 			query.executeUpdate();
 			ResultSet rs = query.getGeneratedKeys();
+			
 			if (rs.next()) {
 				newOrder.setId(rs.getInt(1));
 			}

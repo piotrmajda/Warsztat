@@ -1,6 +1,7 @@
 package pl.coderslab.controller;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import pl.coderslab.dao.clientsDao;
 import pl.coderslab.dao.ordersDao;
 import pl.coderslab.entity.clients;
+import pl.coderslab.entity.orders;
 
 /**
  * Servlet implementation class addOrder
@@ -46,14 +48,15 @@ public class addOrder extends HttpServlet {
 		
 		
 		
-		String name = request.getParameter("name");
-		String surname = request.getParameter("surname");
-		String mail = request.getParameter("mail");
+		String plannedStartDate = request.getParameter("plannedStartDate");
+		String problemDesc = request.getParameter("problemDesc");
+		int clientId = Integer.parseInt(request.getParameter("clientId"));
+		String status = request.getParameter("status");
 		
-		int phone = Integer.parseInt(request.getParameter("phone"));
+		orders newOrder = new orders(plannedStartDate, problemDesc, clientId, status);
+		ordersDao.ordersAdd(newOrder);
 		
-		clients newOrder = new clients(name, surname, mail, phone);
-		ordersDao.clientsAdd(newOrder);
+doGet(request, response);
 	}
 
 }

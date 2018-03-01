@@ -36,6 +36,13 @@ public class orders {
 		this.status = status;
 	}
 
+	public orders(String plannedStartDate, String problemDesc, int clientId, String status) {
+		this.plannedStartDate = plannedStartDate;
+		this.problemDesc = problemDesc;
+		this.clientId = clientId;
+		this.status = status;
+	}
+
 	public String getPlannedStartDate() {
 		return plannedStartDate;
 	}

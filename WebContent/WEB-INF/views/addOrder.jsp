@@ -52,10 +52,10 @@
 	  <div class="form-group row">
 	    <label for="inputSurname" class="col-sm-2 col-form-label">Wybierz Klienta, który zgłasza naprawę</label>
 	    <div class="col-sm-10">
-	      <select name="employeeId" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">	      
+	      <select name="clientId" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">	      
     			<option selected>Wybierz Klienta...</option>
 	      	<c:forEach items="${ clients }" var="client">
-				<option value="${client.id}">${client.surname}, %{client.name}</option>
+				<option value="${client.id}">${client.id}, ${client.surname}, %{client.name}</option>
     	 	</c:forEach>
     	  </select>
 	    </div>
@@ -64,7 +64,7 @@
 	  <div class="form-group row">
 	    <label for="inputSurname" class="col-sm-2 col-form-label">Wybierz status zamówienia</label>
 	    <div class="col-sm-10">
-	      <select name="employeeId" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">	      
+	      <select name="status" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">	      
     			<option selected>Wybierz status...</option>
 				<option value="Przyjęty">Przyjęty</option>
 				<option value="Zatwierdzone koszty naprawy">Zatwierdzone koszty naprawy</option>
