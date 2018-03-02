@@ -11,9 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pl.coderslab.dao.clientsDao;
+import pl.coderslab.dao.employeesDao;
 import pl.coderslab.dao.ordersDao;
+import pl.coderslab.dao.vehiclesDao;
 import pl.coderslab.entity.clients;
+import pl.coderslab.entity.employees;
 import pl.coderslab.entity.orders;
+import pl.coderslab.entity.vehicles;
 
 /**
  * Servlet implementation class addOrder
@@ -36,6 +40,10 @@ public class addOrder extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<clients> clients= clientsDao.listClients();
 		request.setAttribute("clients", clients);
+		List<vehicles> vehicles= vehiclesDao.listVehicles();
+		request.setAttribute("vehicles", vehicles);
+		List<employees> employees= employeesDao.listEmployees();
+		request.setAttribute("employees", employees);		
 		getServletContext()
 		.getRequestDispatcher("/WEB-INF/views/addOrder.jsp")
 		.forward(request, response);
@@ -49,11 +57,49 @@ public class addOrder extends HttpServlet {
 		
 		
 		String plannedStartDate = request.getParameter("plannedStartDate");
+		String employeeIdWork = request.getParameter("employeeId");
+			int employeeId;
+			try
+			{
+				if(employeeIdWork != null){
+					employeeId = Integer.parseInt(employeeIdWork);
+				}else {
+					employeeId = 0;
+				}
+			}catch (NumberFormatException e)
+			{
+				employeeId = 0;
+			}		
 		String problemDesc = request.getParameter("problemDesc");
-		int clientId = Integer.parseInt(request.getParameter("clientId"));
+		String vehicleIdWork = request.getParameter("vehicleId");
+			int vehicleId;
+			try
+			{
+				if(vehicleIdWork != null){
+					vehicleId = Integer.parseInt(vehicleIdWork);
+				}else {
+					vehicleId = 0;
+				}
+			}catch (NumberFormatException e)
+			{
+				vehicleId = 0;
+			}	
+		String clientIdWork = request.getParameter("clientId");
+			int clientId;
+			try
+			{
+				if(clientIdWork != null){
+					clientId = Integer.parseInt(clientIdWork);
+				}else {
+					clientId = 0;
+				}
+			}catch (NumberFormatException e)
+			{
+				clientId = 0;
+			}				
 		String status = request.getParameter("status");
 		
-		orders newOrder = new orders(plannedStartDate, problemDesc, clientId, status);
+		orders newOrder = new orders(plannedStartDate, employeeId, problemDesc, vehicleId, clientId, status);
 		ordersDao.ordersAdd(newOrder);
 		
 doGet(request, response);

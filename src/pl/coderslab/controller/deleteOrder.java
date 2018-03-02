@@ -10,9 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pl.coderslab.dao.clientsDao;
+import pl.coderslab.dao.employeesDao;
 import pl.coderslab.dao.ordersDao;
+import pl.coderslab.dao.vehiclesDao;
 import pl.coderslab.entity.clients;
+import pl.coderslab.entity.employees;
 import pl.coderslab.entity.orders;
+import pl.coderslab.entity.vehicles;
 
 /**
  * Servlet implementation class deleteOrder
@@ -49,7 +53,10 @@ public class deleteOrder extends HttpServlet {
 		}
 		
 
-		
+		List<vehicles> vehicles= vehiclesDao.listVehicles();
+		request.setAttribute("vehicles", vehicles);
+		List<employees> employees= employeesDao.listEmployees();
+		request.setAttribute("employees", employees);
 		List<orders> orders= ordersDao.listOrders();
 		request.setAttribute("orders", orders);
 		List<clients> clients= clientsDao.listClients();

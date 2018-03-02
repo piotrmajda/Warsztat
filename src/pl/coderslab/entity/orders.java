@@ -55,9 +55,11 @@ public class orders {
 		this.status = status;
 	}
 
-	public orders(String plannedStartDate, String problemDesc, int clientId, String status) {
+	public orders(String plannedStartDate, int employeeId, String problemDesc, int vehicleId, int clientId, String status) {
 		this.plannedStartDate = plannedStartDate;
+		this.employeeId = employeeId;
 		this.problemDesc = problemDesc;
+		this.vehicleId = vehicleId;
 		this.clientId = clientId;
 		this.status = status;
 	}

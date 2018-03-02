@@ -15,37 +15,25 @@ public class employeesDao {
 		static public employees employeesAdd(employees newEmployee) {
 			try {
 				Connection c = DbUtil.getConn();
-				PreparedStatement query;
-				if(newEmployee.getPhone() >0 && newEmployee.getEmployee_hours() >0){
-					query = c.prepareStatement("INSERT INTO employees VALUES(default, ?, ?, ?, ?, ?, ?)",
+				PreparedStatement query = c.prepareStatement("INSERT INTO employees VALUES(default, ?, ?, ?, ?, ?, ?)",
 							Statement.RETURN_GENERATED_KEYS);
 					query.setString(1, newEmployee.getName());
 					query.setString(2, newEmployee.getSurname());
 					query.setString(3, newEmployee.getAddress());
-					query.setInt(4, newEmployee.getPhone());
+					if(newEmployee.getPhone() > 0){
+						query.setInt(4, newEmployee.getPhone());						
+					}
+					else {
+						query.setNull(4, java.sql.Types.INTEGER);
+					}
 					query.setString(5, newEmployee.getNote());
-					query.setDouble(6, newEmployee.getEmployee_hours());
-				}
-				else if (newEmployee.getPhone() >0){
-					query = c.prepareStatement("INSERT INTO employees(id, name, surname, address, phone, note) VALUES(default, ?, ?, ?, ?, ?)",
-							Statement.RETURN_GENERATED_KEYS);
-					query.setString(1, newEmployee.getName());
-					query.setString(2, newEmployee.getSurname());
-					query.setString(3, newEmployee.getAddress());
-					query.setInt(4, newEmployee.getPhone());
-					query.setString(5, newEmployee.getNote());
-				}
-				else{query = c.prepareStatement("INSERT INTO employees(id, name, surname, address, note, employee_hours) VALUES(default, ?, ?, ?, ?, ?)",
-						Statement.RETURN_GENERATED_KEYS);
-				query.setString(1, newEmployee.getName());
-				query.setString(2, newEmployee.getSurname());
-				query.setString(3, newEmployee.getAddress());
-				query.setString(4, newEmployee.getNote());
-				query.setDouble(5, newEmployee.getEmployee_hours());
-					
-				}
-
-				
+					if(newEmployee.getEmployee_hours() > 0){
+						query.setDouble(6, newEmployee.getEmployee_hours());
+					}
+					else{
+						query.setNull(6, java.sql.Types.DOUBLE);
+					}
+									
 
 				query.executeUpdate();
 				ResultSet rs = query.getGeneratedKeys();

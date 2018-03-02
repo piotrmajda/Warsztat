@@ -15,37 +15,24 @@ public class vehiclesDao {
 	static public vehicles vehiclesAdd(vehicles newVehicle) {
 		try {
 			Connection c = DbUtil.getConn();
-			PreparedStatement query;
-			if (newVehicle.getProdYear() > 0 && newVehicle.getClientId() > 0) {
-				query = c.prepareStatement("INSERT INTO vehicle VALUES(default, ?, ?, ?, ?, ?, ?)",
+			PreparedStatement query = c.prepareStatement("INSERT INTO vehicle VALUES(default, ?, ?, ?, ?, ?, ?)",
 						Statement.RETURN_GENERATED_KEYS);
 				query.setString(1, newVehicle.getBrand());
 				query.setString(2, newVehicle.getModel());
-				query.setInt(3, newVehicle.getProdYear());
+				if(newVehicle.getProdYear() > 0){
+					query.setInt(3, newVehicle.getProdYear());						
+				}
+				else {
+					query.setNull(3, java.sql.Types.INTEGER);
+				}
 				query.setString(4, newVehicle.getRegNum());
 				query.setString(5, newVehicle.getNextService());
-				query.setInt(6, newVehicle.getClientId());
-			} else if (newVehicle.getProdYear() > 0) {
-				query = c.prepareStatement(
-						"INSERT INTO vehicle(id, brand, model, profYear, regNum, nextService) VALUES(default, ?, ?, ?, ?, ?)",
-						Statement.RETURN_GENERATED_KEYS);
-				query.setString(1, newVehicle.getBrand());
-				query.setString(2, newVehicle.getModel());
-				query.setInt(3, newVehicle.getProdYear());
-				query.setString(4, newVehicle.getRegNum());
-				query.setString(5, newVehicle.getNextService());
-			} else {
-				query = c.prepareStatement(
-						"INSERT INTO vehicle(id, brand, model, regNum, nextService, clientId) VALUES(default, ?, ?, ?, ?, ?)",
-						Statement.RETURN_GENERATED_KEYS);
-				query.setString(1, newVehicle.getBrand());
-				query.setString(2, newVehicle.getModel());
-				query.setString(3, newVehicle.getRegNum());
-				query.setString(4, newVehicle.getNextService());
-				query.setInt(5, newVehicle.getClientId());
-
-			}
-
+				if(newVehicle.getClientId() > 0){
+					query.setInt(6, newVehicle.getClientId());						
+				}
+				else {
+					query.setNull(6, java.sql.Types.INTEGER);
+				}
 			query.executeUpdate();
 			ResultSet rs = query.getGeneratedKeys();
 			if (rs.next()) {

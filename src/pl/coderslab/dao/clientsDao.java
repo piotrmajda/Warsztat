@@ -15,25 +15,17 @@ public class clientsDao {
 	static public clients clientsAdd(clients newClient) {
 		try {
 			Connection c = DbUtil.getConn();
-			PreparedStatement query;
-			if(newClient.getPhone() >0){
-				query = c.prepareStatement("INSERT INTO clients VALUES(default, ?, ?, ?, ?)",
+			PreparedStatement query = c.prepareStatement("INSERT INTO clients VALUES(default, ?, ?, ?, ?)",
 						Statement.RETURN_GENERATED_KEYS);
 				query.setString(1, newClient.getName());
 				query.setString(2, newClient.getSurname());
 				query.setString(3, newClient.getMail());
-				query.setInt(4, newClient.getPhone());
-			}
-			else{query = c.prepareStatement("INSERT INTO clients(id, name, surname, mail) VALUES(default, ?, ?, ?)",
-					Statement.RETURN_GENERATED_KEYS);
-			query.setString(1, newClient.getName());
-			query.setString(2, newClient.getSurname());
-			query.setString(3, newClient.getMail());
-				
-			}
-
-			
-
+				if(newClient.getPhone() > 0){
+					query.setInt(4, newClient.getPhone());						
+				}
+				else {
+					query.setNull(4, java.sql.Types.INTEGER);
+				}
 			query.executeUpdate();
 			ResultSet rs = query.getGeneratedKeys();
 			if (rs.next()) {

@@ -15,11 +15,11 @@
 	  </div>
 	  
 	  
-<%--
+
 	  <div class="form-group row">
-	    <label for="inputSurname" class="col-sm-2 col-form-label">Wybierz pracownika do tej naprawy</label>
+	    <label for="selectEmployeeId" class="col-sm-2 col-form-label">Wybierz pracownika do tej naprawy</label>
 	    <div class="col-sm-10">
-	      <select name="employeeId" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">	      
+	      <select name="employeeId" class="custom-select my-1 mr-sm-2" id="selectEmployeeId">	      
     			<option selected>Wybierz pracownika...</option>
 	      	<c:forEach items="${ employees }" var="employee">
 				<option value="${employee.id}">${employee.surname}, ${employee.name}, ${employee.employee_hours}zł/h</option>
@@ -27,7 +27,7 @@
     	  </select>
 	    </div>
 	  </div>
---%>
+
 	  
 	  <div class="form-group row">
 	    <label for="inputProblemDesc" class="col-sm-2 col-form-label">Podaj opis problemu</label>
@@ -36,26 +36,26 @@
 	    </div>
 	  </div>
 	  
-<%--	  
+	  
 	  <div class="form-group row">
-	    <label for="inputSurname" class="col-sm-2 col-form-label">Wybierz pojazd, którego dotyczy naprawa</label>
+	    <label for="selectVehicleId" class="col-sm-2 col-form-label">Wybierz pojazd, którego dotyczy naprawa</label>
 	    <div class="col-sm-10">
-	      <select name="employeeId" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">	      
+	      <select name="vehicleId" class="custom-select my-1 mr-sm-2" id="selectVehicleId">	      
     			<option selected>Wybierz pojazd...</option>
 	      	<c:forEach items="${ vehicles }" var="vehicle">
-				<option value="${vehicle.id}">${vehicle.regNum}</option>
+				<option value="${vehicle.id}">${vehicle.brand} ${vehicle.model}, ${vehicle.regNum}</option>
     	 	</c:forEach>
     	  </select>
 	    </div>
 	  </div>
---%>	    
+	    
 	  <div class="form-group row">
-	    <label for="inputSurname" class="col-sm-2 col-form-label">Wybierz Klienta, który zgłasza naprawę</label>
+	    <label for="selectClientId" class="col-sm-2 col-form-label">Wybierz Klienta, który zgłasza naprawę</label>
 	    <div class="col-sm-10">
-	      <select name="clientId" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">	      
+	      <select name="clientId" class="custom-select my-1 mr-sm-2" id="selectClientId">	      
     			<option selected>Wybierz Klienta...</option>
 	      	<c:forEach items="${ clients }" var="client">
-				<option value="${client.id}">${client.id}, ${client.surname}, %{client.name}</option>
+				<option value="${client.id}">${client.id}, ${client.surname}, ${client.name}</option>
     	 	</c:forEach>
     	  </select>
 	    </div>

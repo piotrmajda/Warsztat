@@ -1,6 +1,7 @@
 package pl.coderslab.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -15,14 +16,29 @@ public class ordersDao {
 	static public orders ordersAdd(orders newOrder) {
 		try {
 			Connection c = DbUtil.getConn();
-			PreparedStatement query = c.prepareStatement("INSERT INTO orders(id, orderDate, plannedStartDate, problemDesc, clientId, status) VALUES(default, NOW(), ?, ?, ?, ?)",
+			PreparedStatement query = c.prepareStatement("INSERT INTO orders(id, orderDate, plannedStartDate, employeeId, problemDesc, vehicleId, clientId, status) VALUES(default, NOW(), ?, ?, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			query.setString(1, newOrder.getPlannedStartDate());
-			query.setString(2, newOrder.getProblemDesc());
-			query.setInt(3, newOrder.getClientId());
-			query.setString(4, newOrder.getStatus());
-//			query.setInt(5, newOrder.getVehicleId());
-//			query.setInt(6, newOrder.getEmployeeId());
+			if(newOrder.getEmployeeId() > 0){
+				query.setInt(2, newOrder.getEmployeeId());						
+			}
+			else {
+				query.setNull(2, java.sql.Types.INTEGER);
+			}			
+			query.setString(3, newOrder.getProblemDesc());
+			if(newOrder.getVehicleId() > 0){
+				query.setInt(4, newOrder.getVehicleId());						
+			}
+			else {
+				query.setNull(4, java.sql.Types.INTEGER);
+			}						
+			if(newOrder.getClientId() > 0){
+				query.setInt(5, newOrder.getClientId());						
+			}
+			else {
+				query.setNull(5, java.sql.Types.INTEGER);
+			}						
+			query.setString(6, newOrder.getStatus());
 			
 			
 
@@ -77,25 +93,70 @@ public class ordersDao {
 		return true;
 
 	}
-//	
-//	static public clients clientsEdit(clients editClient) {
-//		try {
-//			Connection c = DbUtil.getConn();
-//			PreparedStatement query = c.prepareStatement("UPDATE clients SET name = ?, surname = ?, mail = ?, phone= ? WHERE id = ?");
-//			query.setString(1, editClient.getName());
-//			query.setString(2, editClient.getSurname());
-//			query.setString(3, editClient.getMail());
-//			query.setInt(4, editClient.getPhone());
-//			query.setInt(5, editClient.getId());
-//			
-//			query.executeUpdate();
-//
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//		return editClient;
-//	}
-//	
-//
+	
+	static public orders ordersEdit(orders editOrder) {
+		try {
+			Connection c = DbUtil.getConn();
+			PreparedStatement query = c.prepareStatement("UPDATE orders SET orderDate = ?, startDate = ?, employeeId = ?, problemDesc= ?, repairDesc= ?, vehicleId= ?, generalCost= ?, partsCost= ?, employeeHours= ?, employeeHourlyRate= ?, clientId= ?, plannedStartDate= ?, status= ? WHERE id = ?");
+			query.setString(1, editOrder.getOrderDate());
+			query.setString(2, editOrder.getStartDate());
+			if(editOrder.getEmployeeId() > 0){
+				query.setInt(3, editOrder.getEmployeeId());						
+			}
+			else {
+				query.setNull(3, java.sql.Types.INTEGER);
+			}			
+			query.setString(4, editOrder.getProblemDesc());
+			query.setString(5, editOrder.getRepairDesc());		
+			if(editOrder.getVehicleId() > 0){
+				query.setInt(6, editOrder.getVehicleId());						
+			}
+			else {
+				query.setNull(6, java.sql.Types.INTEGER);
+			}		
+			if(editOrder.getGeneralCost() > 0){
+				query.setDouble(7, editOrder.getGeneralCost());						
+			}
+			else {
+				query.setNull(7, java.sql.Types.DOUBLE);
+			}
+			if(editOrder.getPartsCost() > 0){
+				query.setDouble(8, editOrder.getPartsCost());						
+			}
+			else {
+				query.setNull(8, java.sql.Types.DOUBLE);
+			}
+			if(editOrder.getEmployeeHours() > 0){
+				query.setDouble(9, editOrder.getEmployeeHours());						
+			}
+			else {
+				query.setNull(9, java.sql.Types.DOUBLE);
+			}
+			if(editOrder.getEmployeeHourlyRate() > 0){
+				query.setDouble(10, editOrder.getEmployeeHourlyRate());						
+			}
+			else {
+				query.setNull(10, java.sql.Types.DOUBLE);
+			}
+			if(editOrder.getClientId() > 0){
+				query.setInt(11, editOrder.getClientId());						
+			}
+			else {
+				query.setNull(11, java.sql.Types.INTEGER);
+			}				
+			query.setString(12, editOrder.getPlannedStartDate());
+			query.setString(13, editOrder.getStatus());
+			query.setInt(14, editOrder.getId());
+
+			
+			query.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return editOrder;
+	}
+	
+
 }
 
