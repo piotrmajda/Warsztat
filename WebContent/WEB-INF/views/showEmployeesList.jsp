@@ -12,61 +12,77 @@
 	      			<th scope="col">#</th>
 	      			<th scope="col">Imię</th>
 	      			<th scope="col">Nazwisko</th>
-	      			<th scope="col">E-mail</th>
-	      			<th scope="col">Numer telefonu</th>
+	      			<th scope="col">Adres</th>
+	      			<th scope="col">Numer telefonu</th>	      			
+	      			<th scope="col">Notatka</th>
+	      			<th scope="col">Stawka za godzinę</th>
 	      			<th scope="col"></th>	      			
 	      			<th scope="col"></th>
 				</tr>
 	  		</thead>
 	  		<tbody>
-	  			<c:forEach items="${ clients }" var="client">
+	  			<c:forEach items="${ employees }" var="employee">
 	    			<tr>
-	      				<th scope="row">${client.id}</th>
-	      				<td>${client.name}</td>
-	      				<td>${client.surname}</td>
-	      				<td>${client.mail}</td>
-	      				<td>${client.phone}</td>	      				
+	      				<th scope="row">${employee.id}</th>
+	      				<td>${employee.name}</td>
+	      				<td>${employee.surname}</td>
+	      				<td>${employee.address}</td>
+	      				<td>${employee.phone}</td>	  
+	      				<td>${employee.note}</td>	  
+	      				<td>${employee.employee_hours} zł/h</td>	      				
 	      				<td>	      				
-							<button type="button" class="btn btn-warning" style="cursor:pointer;" data-toggle="modal" data-target="#${client.id}e">Edytuj</button>
-							<div class="modal fade" id="${client.id}e" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<button type="button" class="btn btn-warning" style="cursor:pointer;" data-toggle="modal" data-target="#${employee.id}e">Edytuj</button>
+							<div class="modal fade" id="${employee.id}e" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 							  <div class="modal-dialog modal-dialog-centered" role="document">
 							    <div class="modal-content">
 							      <div class="modal-header">
-							        <h5 class="modal-title" id="exampleModalLongTitle">Modyfikacja danych Klienta: ${client.surname} ${client.name} </h5>
+							        <h5 class="modal-title" id="exampleModalLongTitle">Modyfikacja danych Pracownika: ${employee.surname} ${employee.name} </h5>
 							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							          <span aria-hidden="true">&times;</span>
 							        </button>
 							      </div>
 							      <div class="modal-body">
-							      	<form action="editClient" method="post">
+							      	<form action="editEmployee" method="post">
 										<div style="display:none;" class="form-group row">
 											<label for="inputId" class="col-sm-2 col-form-label">Id</label>
 											<div class="col-sm-10">
-												<input type="text" name="id" class="form-control" id="inputId" value="${client.id}">
+												<input type="text" name="id" class="form-control" id="inputId" value="${employee.id}">
 											</div>
 										</div>				
 										<div class="form-group row">
 											<label for="inputName" class="col-sm-2 col-form-label">Imię</label>
 											<div class="col-sm-10">
-												<input type="text" name="name" class="form-control" id="inputName" value="${client.name}">
+												<input type="text" name="name" class="form-control" id="inputName" value="${employee.name}">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label for="inputSurname" class="col-sm-2 col-form-label">Nazwisko</label>
 											<div class="col-sm-10">
-												<input type="text" name="surname" class="form-control" id="inputSurname" value="${client.surname}">
+												<input type="text" name="surname" class="form-control" id="inputSurname" value="${employee.surname}">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label for="inputMail" class="col-sm-2 col-form-label">Adres e-mail</label>
+											<label for="inputAddress" class="col-sm-2 col-form-label">Adres</label>
 											<div class="col-sm-10">
-												<input type="text" name="mail" class="form-control" id="inputMail" value="${client.mail}">
+												<input type="text" name="address" class="form-control" id="inputAddress" value="${employee.address}">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label for="inputPhone" class="col-sm-2 col-form-label">Numer telefonu</label>
 											<div class="col-sm-10">
-												<input type="text" name="phone" class="form-control" id="inputPhone" value="${client.phone}">
+												<input type="text" name="phone" class="form-control" id="inputPhone" value="${employee.phone}">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="inputNote" class="col-sm-2 col-form-label">Notatka</label>
+											<div class="col-sm-10">
+												<input type="text" name="note" class="form-control" id="inputNote" value="${employee.note}">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="inputEmployee_hours" class="col-sm-2 col-form-label">Stawka za godzinę pracy</label>
+											<div class="col-sm-10">
+												<input type="text" name="employee_hours" class="form-control" id="inputEmployee_hours" value="${employee.employee_hours}">
 											</div>
 										</div>
 										
@@ -82,19 +98,19 @@
 							</div>
 						</td>	      				
 	      				<td>
-							<button type="button" class="btn btn-danger" style="cursor:pointer;" data-toggle="modal" data-target="#${client.id}d">Usuń</button>
-							<div class="modal fade" id="${client.id}d" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<button type="button" class="btn btn-danger" style="cursor:pointer;" data-toggle="modal" data-target="#${employee.id}d">Usuń</button>
+							<div class="modal fade" id="${employee.id}d" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 							  <div class="modal-dialog modal-dialog-centered" role="document">
 							    <div class="modal-content">
 							      <div class="modal-header">
-							        <h5 class="modal-title" id="exampleModalLongTitle">Czy chcesz usunąć dane Klienta ${client.surname} ${client.name} ?</h5>
+							        <h5 class="modal-title" id="exampleModalLongTitle">Czy chcesz usunąć dane Pracownika ${employee.surname} ${employee.name} ?</h5>
 							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							          <span aria-hidden="true">&times;</span>
 							        </button>
 							      </div>
 							      <div class="modal-body">
-									<form action="deleteClient" method="post">
-										<button type="submit" name="delId" value="${client.id}" class="btn btn-danger">Usuń</button>
+									<form action="deleteEmployee" method="post">
+										<button type="submit" name="delId" value="${employee.id}" class="btn btn-danger">Usuń</button>
 									</form>
 							      </div>
 							    </div>

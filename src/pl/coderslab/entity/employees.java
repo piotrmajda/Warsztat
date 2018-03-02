@@ -76,5 +76,15 @@ public class employees {
 		this.note = note;
 		this.employee_hours = employee_hours;
 	}
+	public employees(String name, String surname, String address, int phone, String note,
+			double employee_hours) {
+		super();
+		this.name = name;
+		this.surname = surname;
+		this.address = address;
+		this.phone = phone;
+		this.note = note;
+		this.employee_hours = employee_hours;
+	}
 	
 }
