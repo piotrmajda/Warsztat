@@ -36,7 +36,6 @@ public class ordersDao {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(newOrder.getId());
 		return newOrder;
 	}
 
@@ -94,7 +93,6 @@ public class ordersDao {
 //		} catch (Exception e) {
 //			System.out.println(e.getMessage());
 //		}
-//		System.out.println(editClient.getId());
 //		return editClient;
 //	}
 //	

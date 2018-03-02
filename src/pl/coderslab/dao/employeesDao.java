@@ -56,7 +56,6 @@ public class employeesDao {
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-			System.out.println(newEmployee.getId());
 			return newEmployee;
 		}
 	//show list of all clients
@@ -117,7 +116,6 @@ public class employeesDao {
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-			System.out.println(editEmployees.getId());
 			return editEmployees;
 		}
 		

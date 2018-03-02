@@ -26,7 +26,7 @@
 <div class="btn-group">
   <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pojazdy</button>
   <div class="dropdown-menu">
-    <a class="dropdown-item" href="showVehiclesList">Wyświetl wszystkie...</a>
+    <a class="dropdown-item" href="showVehicleList">Wyświetl wszystkie...</a>
     <a class="dropdown-item" href="addVehicle">Dodaj nowy...</a>
   </div>
 </div>

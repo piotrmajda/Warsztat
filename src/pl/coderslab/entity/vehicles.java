@@ -1,6 +1,6 @@
 package pl.coderslab.entity;
 
-public class vehicle {
+public class vehicles {
 	private int id;
 	private String brand;
 	private String model;
@@ -8,7 +8,7 @@ public class vehicle {
 	private String regNum;
 	private String nextService;
 	private int clientId;
-	public vehicle(int id, String brand, String model, int prodYear, String regNum, String nextService, int clientId) {
+	public vehicles(int id, String brand, String model, int prodYear, String regNum, String nextService, int clientId) {
 		super();
 		this.id = id;
 		this.brand = brand;
@@ -18,8 +18,21 @@ public class vehicle {
 		this.nextService = nextService;
 		this.clientId = clientId;
 	}
+	public vehicles(String brand, String model, int prodYear, String regNum, String nextService, int clientId) {
+		super();
+		this.brand = brand;
+		this.model = model;
+		this.prodYear = prodYear;
+		this.regNum = regNum;
+		this.nextService = nextService;
+		this.clientId = clientId;
+	}
 	public int getId() {
 		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getBrand() {
 		return brand;

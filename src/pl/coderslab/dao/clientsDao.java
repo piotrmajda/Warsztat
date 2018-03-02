@@ -43,7 +43,6 @@ public class clientsDao {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(newClient.getId());
 		return newClient;
 	}
 //show list of all clients
@@ -102,7 +101,6 @@ public class clientsDao {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println(editClient.getId());
 		return editClient;
 	}
 	
