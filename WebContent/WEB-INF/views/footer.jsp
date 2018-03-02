@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <hr/>
-<p align="center">Created by <a href="https://github.com/250483">250483</a> & <a href="https://github.com/piotrmajda">piotrmajda</a> 2018</p>
+<p align="center">Created by <a href="https://github.com/piotrmajda">piotrmajda</a> 2018</p>
 
 
 </body>

@@ -11,7 +11,7 @@ import pl.coderslab.entity.clients;
 import pl.coderslab.service.DbUtil;
 
 public class clientsDao {
-	
+//add new client
 	static public clients clientsAdd(clients newClient) {
 		try {
 			Connection c = DbUtil.getConn();
@@ -46,7 +46,7 @@ public class clientsDao {
 		System.out.println(newClient.getId());
 		return newClient;
 	}
-
+//show list of all clients
 	static public List<clients> listClients() {
 		List<clients> clients = new ArrayList<>();
 		try {
@@ -67,7 +67,7 @@ public class clientsDao {
 		return clients;
 
 	}
-	
+//delete client from db
 	static public boolean clientsDel(int id) throws Exception {
 		try {
 			Connection c = DbUtil.getConn();
@@ -85,6 +85,7 @@ public class clientsDao {
 		return true;
 
 	}
+// edit client	
 	
 	static public clients clientsEdit(clients editClient) {
 		try {

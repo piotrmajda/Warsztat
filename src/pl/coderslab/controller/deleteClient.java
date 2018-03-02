@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pl.coderslab.dao.clientsDao;
+import pl.coderslab.dao.ordersDao;
 import pl.coderslab.entity.clients;
+import pl.coderslab.entity.orders;
 
 /**
  * Servlet implementation class deleteClient
@@ -31,12 +33,7 @@ public class deleteClient extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		List<clients> clients= clientsDao.listClients();
-		request.setAttribute("clients", clients);
-		getServletContext()
-			.getRequestDispatcher("/WEB-INF/views/delClient.jsp")
-			.forward(request, response);
+
 	}
 
 	/**
@@ -48,11 +45,16 @@ public class deleteClient extends HttpServlet {
 		try {
 			clientsDao.clientsDel(id);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		doGet(request, response);
+
+
+		List<clients> clients= clientsDao.listClients();
+		request.setAttribute("clients", clients);
+		getServletContext()
+			.getRequestDispatcher("/WEB-INF/views/showClientsList.jsp")
+			.forward(request, response);
 	}
 
 }

@@ -31,12 +31,6 @@ public class editClient extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		List<clients> clients= clientsDao.listClients();
-		request.setAttribute("clients", clients);
-		getServletContext()
-			.getRequestDispatcher("/WEB-INF/views/editClient.jsp")
-			.forward(request, response);
 	}
 
 	/**
@@ -70,6 +64,13 @@ public class editClient extends HttpServlet {
 		
 		clients editClient = new clients(id, name, surname, mail, phone);
 		clientsDao.clientsEdit(editClient);
+		
+
+		List<clients> clients= clientsDao.listClients();
+		request.setAttribute("clients", clients);
+		getServletContext()
+			.getRequestDispatcher("/WEB-INF/views/showClientsList.jsp")
+			.forward(request, response);
 		
 doGet(request, response);
 	}

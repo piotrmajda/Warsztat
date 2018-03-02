@@ -5,19 +5,15 @@
 <div class="btn-group">
   <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pracownicy</button>
   <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Wyświetl wszystkich...</a>
-    <a class="dropdown-item" href="#">Dodaj nowego...</a>
-    <a class="dropdown-item" href="#">Edytuj dane...</a>
-    <a class="dropdown-item" href="#">Usuń dane...</a>
+    <a class="dropdown-item" href="showEmployeesList">Wyświetl wszystkich...</a>
+    <a class="dropdown-item" href="addEmployee">Dodaj nowego...</a>
   </div>
 </div>
 <div class="btn-group">
   <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Zamówienia</button>
   <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Wyświetl wszystkie...</a>
-    <a class="dropdown-item" href="#">Dodaj nowe...</a>
-    <a class="dropdown-item" href="#">Edytuj zamówienie...</a>
-    <a class="dropdown-item" href="#">Usuń zamówienie...</a>
+    <a class="dropdown-item" href="showOrdersList">Wyświetl wszystkie...</a>
+    <a class="dropdown-item" href="addOrder">Dodaj nowe...</a>
   </div>
 </div>
 <div class="btn-group">
@@ -25,17 +21,13 @@
   <div class="dropdown-menu">
     <a class="dropdown-item" href="showClientsList">Wyświetl wszystkich...</a>
     <a class="dropdown-item" href="addClient">Dodaj nowego...</a>
-    <a class="dropdown-item" href="editClient">Edytuj dane...</a>
-    <a class="dropdown-item" href="deleteClient">Usuń dane...</a>
   </div>
 </div>
 <div class="btn-group">
   <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pojazdy</button>
   <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Wyświetl wszystkie...</a>
-    <a class="dropdown-item" href="#">Dodaj nowy...</a>
-    <a class="dropdown-item" href="#">Edytuj dane...</a>
-    <a class="dropdown-item" href="#">Usuń dane...</a>
+    <a class="dropdown-item" href="showVehiclesList">Wyświetl wszystkie...</a>
+    <a class="dropdown-item" href="addVehicle">Dodaj nowy...</a>
   </div>
 </div>
 </div>
