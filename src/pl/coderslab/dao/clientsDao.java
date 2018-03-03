@@ -31,6 +31,7 @@ public class clientsDao {
 			if (rs.next()) {
 				newClient.setId(rs.getInt(1));
 			}
+			c.close();  
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -51,6 +52,7 @@ public class clientsDao {
 				client.setId(rs.getInt(1));
 				clients.add(client);
 			}
+			c.close(); 
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -67,7 +69,8 @@ public class clientsDao {
 			query.setInt(1, id);
 
 			query.executeUpdate();
-			
+
+			c.close(); 
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -89,6 +92,7 @@ public class clientsDao {
 				query.setInt(5, editClient.getId());
 
 			query.executeUpdate();
+			c.close(); 
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

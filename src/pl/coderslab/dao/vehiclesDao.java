@@ -38,6 +38,7 @@ public class vehiclesDao {
 			if (rs.next()) {
 				newVehicle.setId(rs.getInt(1));
 			}
+			c.close(); 
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -59,6 +60,7 @@ public class vehiclesDao {
 				vehicle.setId(rs.getInt(1));
 				vehicles.add(vehicle);
 			}
+			c.close(); 
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -76,6 +78,7 @@ public class vehiclesDao {
 			query.setInt(1, id);
 
 			query.executeUpdate();
+			c.close(); 
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -100,6 +103,7 @@ public class vehiclesDao {
 			query.setInt(7, editVehicle.getId());
 
 			query.executeUpdate();
+			c.close(); 
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

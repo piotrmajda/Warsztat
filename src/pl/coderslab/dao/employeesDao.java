@@ -40,6 +40,7 @@ public class employeesDao {
 				if (rs.next()) {
 					newEmployee.setId(rs.getInt(1));
 				}
+				c.close(); 
 
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
@@ -60,6 +61,7 @@ public class employeesDao {
 					employee.setId(rs.getInt(1));
 					employees.add(employee);
 				}
+				c.close(); 
 
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
@@ -76,7 +78,8 @@ public class employeesDao {
 				query.setInt(1, id);
 
 				query.executeUpdate();
-				
+
+				c.close(); 
 
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
@@ -100,6 +103,7 @@ public class employeesDao {
 					query.setInt(7, editEmployees.getId());
 
 				query.executeUpdate();
+				c.close(); 
 
 			} catch (Exception e) {
 				System.out.println(e.getMessage());

@@ -48,6 +48,7 @@ public class ordersDao {
 			if (rs.next()) {
 				newOrder.setId(rs.getInt(1));
 			}
+			c.close(); 
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -68,6 +69,7 @@ public class ordersDao {
 				order.setId(rs.getInt(1));
 				orders.add(order);
 			}
+			c.close(); 
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -84,7 +86,8 @@ public class ordersDao {
 			query.setInt(1, id);
 
 			query.executeUpdate();
-			
+
+			c.close(); 
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -150,6 +153,7 @@ public class ordersDao {
 
 			
 			query.executeUpdate();
+			c.close(); 
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
