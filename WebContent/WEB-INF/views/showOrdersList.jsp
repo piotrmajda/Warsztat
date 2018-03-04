@@ -61,7 +61,7 @@
 	      				<td>	      				
 	      					<c:forEach items="${ employees }" var="employee">
 	      						<c:choose>	  								      					
-	  				  				<c:when test="${employee.id == order.vehicleId}">
+	  				  				<c:when test="${employee.id == order.employeeId}">
 	      							${employee.surname}, ${employee.name}
 	    							</c:when>    
 	    							<c:otherwise>
@@ -118,10 +118,216 @@
 							    </c:otherwise>
 							</c:choose>
 	      				</td>	      				
-	      				<td>
-	      					<form action="editOrder" method="post">
-								<button type="submit" name="editId" value="${order.id}" class="btn btn-warning">Edytuj</button>
-							</form>
+	      				<td>	      				
+							<button type="button" class="btn btn-warning" style="cursor:pointer;" data-toggle="modal" data-target="#${order.id}e">Edytuj</button>
+							<div class="modal fade" id="${order.id}e" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							  <div class="modal-dialog modal-dialog-centered" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLongTitle">Modyfikacja zamówienia nr ${order.id} z dnia ${order.orderDate}, złożonego przez 	      				
+				      					<c:forEach items="${ clients }" var="client">
+				      						<c:choose>	  								      					
+				  				  				<c:when test="${client.id == order.clientId}">
+				      							${client.surname}, ${client.name}
+				    							</c:when>    
+				    							<c:otherwise>
+											    </c:otherwise>
+											</c:choose>
+										</c:forEach></h5>
+							      </div>
+							      <div class="modal-body">
+							      	<form action="editOrder" method="post">
+										<div style="display:none;" class="form-group row">
+											<label for="inputId" class="col-sm-2 col-form-label">Id</label>
+											<div class="col-sm-10">
+												<input type="text" name="id" class="form-control" id="inputId" value="${order.id}">
+											</div>
+										</div>																				
+										<div class="form-group row">
+										    <label for="editDate" class="col-sm-2 col-form-label">Data przyjęcia zamówienia</label>
+										    <div class="col-sm-10">
+										      <input type="date" name="orderDate" class="form-control" id="editDate" value="${order.orderDate}">
+										    </div>
+										</div>
+										<div class="form-group row">
+										    <label for="selectStatus" class="col-sm-2 col-form-label">Wybierz status zamówienia</label>
+										    <div class="col-sm-10">
+										      <select name="status" class="custom-select my-1 mr-sm-2" id="selectStatus">	 
+											      <c:choose>
+													<c:when test="${empty order.status}">
+														<option selected>Wybierz status...</option>
+													</c:when>
+													<c:when test="${order.status == 'Przyjęty'}">
+													<option selected value="Przyjęty">Przyjęty</option>
+													</c:when>
+													<c:when test="${order.status == 'Zatwierdzone koszty naprawy'}">
+													<option selected value="Zatwierdzone koszty naprawy">Zatwierdzone koszty naprawy</option>
+													</c:when>
+													<c:when test="${order.status == 'W naprawie'}">
+													<option selected value="W naprawie">W naprawie</option>
+													</c:when>
+													<c:when test="${order.status == 'Gotowy do odbioru'}">
+													<option selected value="Gotowy do odbioru">Gotowy do odbioru</option>
+													</c:when>
+													<c:when test="${order.status == 'Rezygnacja'}">
+													<option selected value="Rezygnacja">Rezygnacja</option>
+													</c:when>											      
+											      </c:choose>     
+									    			<option>Wybierz status...</option>
+													<option value="Przyjęty">Przyjęty</option>
+													<option value="Zatwierdzone koszty naprawy">Zatwierdzone koszty naprawy</option>
+													<option value="W naprawie">W naprawie</option>
+													<option value="Gotowy do odbioru">Gotowy do odbioru</option>
+													<option value="Rezygnacja">Rezygnacja</option>
+									    	  </select>
+										    </div>
+										</div>
+										<div class="form-group row">
+											<label for="selectClientId" class="col-sm-2 col-form-label">Klient</label>
+											<div class="col-sm-10">
+												<select name="clientId" class="custom-select my-1 mr-sm-2" id="selectClientId">	 
+	      											<c:forEach items="${ clients }" var="client">
+	      												<c:choose>	  								      					
+	  				  										<c:when test="${client.id == order.clientId}">	      							
+																<option selected value="${client.id}">${client.surname}, ${client.name}</option>
+	    													</c:when>    
+	    													<c:otherwise>
+								  							</c:otherwise>
+														</c:choose>
+													</c:forEach>													
+	    											<option >Wybierz Klienta...</option>
+													<c:forEach items="${ clients }" var="client">
+														<option value="${client.id}">${client.surname}, ${client.name}</option>
+													</c:forEach>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="selectVehicleId" class="col-sm-2 col-form-label">Pojazd</label>
+											<div class="col-sm-10">
+												<select name="vehicleId" class="custom-select my-1 mr-sm-2" id="selectVehicleId">	
+																<c:forEach items="${ vehicles }" var="vehicle">
+						      												<c:choose>	  								      					
+						  				  										<c:when test="${vehicle.id == order.vehicleId}">	      							
+																					<option selected value="${vehicle.id}">${vehicle.brand}, ${vehicle.model}, ${vehicle.regNum}</option>
+						    													</c:when>    
+						    													<c:otherwise>
+													  							</c:otherwise>
+																			</c:choose>
+																		</c:forEach>													
+						    											<option >Wybierz pojazd...</option>
+																		<c:forEach items="${ vehicles }" var="vehicle">
+																			<option value="${vehicle.id}">${vehicle.brand}, ${vehicle.model}, ${vehicle.regNum}</option>
+																		</c:forEach>				
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group row">
+										    <label for="inputPlannedStartDate" class="col-sm-2 col-form-label">Planowana data rozpoczęcia naprawy</label>
+										    <div class="col-sm-10">
+										      <input type="date" name="plannedStartDate" class="form-control" id="inputPlannedStartDate" value="${order.plannedStartDate}">
+										    </div>
+										</div>
+										<div class="form-group row">
+											<label for="editProblemDesc" class="col-sm-2 col-form-label">Opis problemu</label>
+											<div class="col-sm-10">
+												<input type="text" name="problemDesc" class="form-control" id="editProblemDesc" value="${order.problemDesc}">
+											</div>
+										</div>
+										
+										<div class="form-group row">
+										    <label for="inputStartDate" class="col-sm-2 col-form-label">Data rozpoczęcia naprawy</label>
+										    <div class="col-sm-10">
+										      <input type="date" name="startDate" class="form-control" id="inputStartDate" value="${order.startDate}">
+										    </div>
+										</div>
+										<div class="form-group row">
+											<label for="selectEmployeeId" class="col-sm-2 col-form-label">Pracownik</label>
+											<div class="col-sm-10">
+												<select name="employeeId" class="custom-select my-1 mr-sm-2" id="selectEmployeeId">	 
+	      											<c:forEach items="${ employees }" var="employee">
+	      												<c:choose>	  								      					
+	  				  										<c:when test="${employee.id == order.employeeId}">	      							
+																<option selected value="${employee.id}">${employee.surname}, ${employee.name}</option>
+	    													</c:when>    
+	    													<c:otherwise>
+								  							</c:otherwise>
+														</c:choose>
+													</c:forEach>													
+	    											<option >Wybierz pracownika...</option>
+													<c:forEach items="${ employees }" var="employee">
+														<option value="${employee.id}">${employee.surname}, ${employee.name}</option>
+													</c:forEach>
+												</select>
+											</div>
+										</div> 
+										
+										
+										
+										
+										<div class="form-group row">
+											<label for="inputRepairDesc" class="col-sm-2 col-form-label">Opis naprawy</label>
+											<div class="col-sm-10">
+												<input type="text" name="repairDesc" class="form-control" id="inputRepairDesc" value="${order.repairDesc}">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="inputGeneralCost" class="col-sm-2 col-form-label">Koszt naprawy</label>
+											<div class="col-sm-10">
+												<input type="text" name="generalCost" class="form-control" id="inputGeneralCost" value="${order.partsCost + order.employeeHours * order.employeeHourlyRate}">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="inputPartsCost" class="col-sm-2 col-form-label">Koszt części</label>
+											<div class="col-sm-10">
+												<input type="text" name="partsCost" class="form-control" id="inputPartsCost" value="${order.partsCost}">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="inputEmployeeHours" class="col-sm-2 col-form-label">Ilość roboczogodzin</label>
+											<div class="col-sm-10">
+												<input type="text" name="employeeHours" class="form-control" id="inputEmployeeHours" value="${order.employeeHours}">
+											</div>
+										</div>
+										
+										
+										<div class="form-group row">
+											<label for="inputEmployeeHourlyRate" class="col-sm-2 col-form-label">Stawka</label>
+											<div class="col-sm-10">
+												<c:forEach items="${ employees }" var="employee">
+			      									<c:choose>	  								      					
+			  				  							<c:when test="${employee.id == order.employeeId}">	      							
+															<input type="text" name="employeeHourlyRate" class="form-control" id="inputEmployeeHourlyRate" value="${employee.employee_hours}">
+			    										</c:when> 
+													</c:choose>
+												</c:forEach>		
+											</div>
+										</div>
+										
+										
+										
+										
+										
+										
+							      
+							      
+							      
+							      
+							      
+										<div class="form-group row">
+											<div class="col-sm-10">
+												<button type="submit" class="btn btn-warning">Zapisz</button>
+											</div>
+										</div>
+							      
+									</form>
+									
+							      
+							      </div>
+							  </div>
+							</div>
+						</div>
 						</td>	      				
 	      				<td>
 							<button type="button" class="btn btn-danger" style="cursor:pointer;" data-toggle="modal" data-target="#${order.id}d">Usuń</button>

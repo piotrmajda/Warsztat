@@ -38,7 +38,13 @@ public class ordersDao {
 			else {
 				query.setNull(5, java.sql.Types.INTEGER);
 			}						
-			query.setString(6, newOrder.getStatus());
+			if(!newOrder.getStatus().equals("Wybierz status...")){
+				query.setString(6, newOrder.getStatus());				
+			}
+			else{
+				query.setString(6, "");	
+			}
+			
 			
 			
 
@@ -101,8 +107,17 @@ public class ordersDao {
 		try {
 			Connection c = DbUtil.getConn();
 			PreparedStatement query = c.prepareStatement("UPDATE orders SET orderDate = ?, startDate = ?, employeeId = ?, problemDesc= ?, repairDesc= ?, vehicleId= ?, generalCost= ?, partsCost= ?, employeeHours= ?, employeeHourlyRate= ?, clientId= ?, plannedStartDate= ?, status= ? WHERE id = ?");
-			query.setString(1, editOrder.getOrderDate());
-			query.setString(2, editOrder.getStartDate());
+			
+			if(editOrder.getOrderDate().equals("")){
+				query.setNull(1, java.sql.Types.DATE);				
+			}else{			
+				query.setString(1, editOrder.getOrderDate());	
+			}			
+			if(editOrder.getStartDate().equals("")){
+				query.setNull(2, java.sql.Types.DATE);				
+			}else{			
+				query.setString(2, editOrder.getStartDate());	
+			}
 			if(editOrder.getEmployeeId() > 0){
 				query.setInt(3, editOrder.getEmployeeId());						
 			}
@@ -116,9 +131,10 @@ public class ordersDao {
 			}
 			else {
 				query.setNull(6, java.sql.Types.INTEGER);
-			}		
-			if(editOrder.getGeneralCost() > 0){
-				query.setDouble(7, editOrder.getGeneralCost());						
+			}	
+			double costs = editOrder.getPartsCost() + editOrder.getEmployeeHours() * editOrder.getEmployeeHourlyRate();
+			if(costs  > 0){
+				query.setDouble(7, costs);						
 			}
 			else {
 				query.setNull(7, java.sql.Types.DOUBLE);
@@ -147,11 +163,15 @@ public class ordersDao {
 			else {
 				query.setNull(11, java.sql.Types.INTEGER);
 			}				
-			query.setString(12, editOrder.getPlannedStartDate());
+			if(editOrder.getPlannedStartDate().equals("")){
+				query.setNull(12, java.sql.Types.DATE);				
+			}else{			
+				query.setString(12, editOrder.getPlannedStartDate());
+			}		
 			query.setString(13, editOrder.getStatus());
 			query.setInt(14, editOrder.getId());
 
-			
+			System.out.println(query.toString());
 			query.executeUpdate();
 			c.close(); 
 
