@@ -50,7 +50,7 @@
 	  </div>	  	  
 	  <div class="form-group row">
 	    <div class="col-sm-10">
-	      <button type="submit" class="btn btn-primary">Dodaj zamówienie</button>
+	      <button type="submit" class="btn btn-primary">Dodaj pojazd</button>
 	    </div>
 	  </div>
 	  

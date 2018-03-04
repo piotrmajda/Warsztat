@@ -86,5 +86,9 @@ public class employees {
 		this.note = note;
 		this.employee_hours = employee_hours;
 	}
+
+	public employees(int id) {
+		this.id = id;
+	}
 	
 }
